@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta name="google-site-verification" content="UPaOjnCqqVEXTZcALx32PuliQOsHQe9HDvSrJgkQ_pU" />
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="איתן, מאמן ומטפל בשיטת NLP: שינוי דפוסי התנהגות, חרדות ומערכות יחסים.">
+<title>Eitanlp</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;600;700;800&family=Cormorant+Garamond:wght@700&display=swap">
+<style>
+/* Layout: wide landscape page. Logo bar on top, then two rows of two framed cards side by side (message + areas of help, then contact pill + clinic), so a laptop screen shows everything without scrolling. Phones stack the cards in one column. */
+:root {
+  --paper-a: #F2E8D6;
+  --paper-b: #E5D3B6;
+  --paper-c: #D9BF9B;
+  --blob-gold: rgba(204, 152, 72, 0.42);
+  --blob-rose: rgba(192, 112, 94, 0.26);
+  --blob-sage: rgba(116, 142, 98, 0.26);
+  --blob-plum: rgba(92, 66, 118, 0.16);
+  --card: rgba(236, 219, 188, 0.84);
+  --edge: #9A7A50;
+  --ink: #2A2536;
+  --ink-soft: #4B4354;
+  --gold: #7A5B34;
+  --rule: rgba(122, 91, 52, 0.35);
+  --on-ink: #F4EBDC;
+  --font-body: "Assistant", "Heebo", "Arial Hebrew", Arial, sans-serif;
+  --font-logo: "Cormorant Garamond", "Playfair Display", Georgia, serif;
+  --grain: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .35  0 0 0 0 .25  0 0 0 0 .15  0 0 0 .4 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  color-scheme: light;
+}
+
+body {
+  background-color: var(--paper-b);
+  background-image:
+    var(--grain),
+    radial-gradient(55% 38% at 6% 8%, var(--blob-gold), transparent 72%),
+    radial-gradient(48% 34% at 100% 30%, var(--blob-sage), transparent 72%),
+    radial-gradient(60% 36% at 0% 66%, var(--blob-rose), transparent 72%),
+    radial-gradient(55% 34% at 100% 100%, var(--blob-plum), transparent 72%),
+    linear-gradient(165deg, var(--paper-a) 0%, var(--paper-b) 55%, var(--paper-c) 100%);
+  background-attachment: scroll, fixed, fixed, fixed, fixed, fixed;
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.6;
+  direction: rtl;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 22px 30px;
+}
+
+.wrap {
+  max-width: 1080px;
+  margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Logo */
+.brand {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  text-align: center;
+}
+.brand-row { direction: ltr; display: flex; flex-direction: column; align-items: center; gap: 0; }
+.brand-tree { width: 64px; height: auto; color: var(--gold); flex: none; display: block; margin-bottom: -2px; }
+.logo-word {
+  font-family: var(--font-logo);
+  font-weight: 700;
+  font-size: clamp(3rem, 12vw, 4rem);
+  line-height: 1;
+  color: var(--ink);
+  padding-bottom: 3px;
+  border-bottom: 3px solid var(--gold);
+}
+.logo-word span { color: var(--gold); }
+.brand-sub { margin: 6px 0 0; font-size: 1rem; font-weight: 600; color: var(--ink-soft); letter-spacing: 0.02em; }
+
+/* Card grid */
+.grid { display: grid; gap: 16px; grid-template-columns: minmax(0, 1fr); }
+.card {
+  background: var(--card);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  border: 2px solid var(--edge);
+  border-radius: 22px;
+  padding: 24px 22px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45), 0 12px 28px -16px rgba(60, 40, 20, 0.55);
+}
+.hero { display: flex; flex-direction: column; justify-content: center; }
+
+h1, h2, h3 { font-family: var(--font-body); text-wrap: balance; margin: 0; text-align: center; }
+h1 {
+  font-size: clamp(1.7rem, 6vw, 2.5rem);
+  font-weight: 800;
+  line-height: 1.2;
+  margin-bottom: 12px;
+}
+.lead { margin: 0 auto 22px; font-size: 1.08rem; text-align: center; }
+
+.label { display: flex; align-items: center; justify-content: center; gap: 14px; font-size: 1.25rem; font-weight: 800; margin-bottom: 8px; color: var(--gold); }
+.label::before, .label::after { content: ""; flex: 1; height: 1px; background: var(--rule); }
+
+/* Buttons */
+.actions { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 52px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 2px solid var(--ink);
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 1.02rem;
+  text-decoration: none;
+  transition: transform 0.12s ease, background-color 0.15s ease, color 0.15s ease;
+}
+.btn svg { width: 21px; height: 21px; flex: none; }
+.btn-solid { background: var(--ink); color: var(--on-ink); }
+.btn-line { background: rgba(255, 255, 255, 0.25); color: var(--ink); }
+.btn-solid:hover { background: #3D3750; }
+.btn-line:hover { background: var(--ink); color: var(--on-ink); }
+.btn:active { transform: translateY(1px); }
+a:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; }
+
+/* Areas of help */
+.services { list-style: none; margin: 0; padding: 0; }
+.services li { text-align: center; padding-block: 12px; border-top: 1px solid var(--rule); }
+.services li:first-child { border-top: 0; padding-top: 4px; }
+.services li:last-child { padding-bottom: 0; }
+.services h3 { font-size: 1.15rem; font-weight: 800; margin-bottom: 1px; }
+.services p { margin: 0; color: var(--ink-soft); }
+
+/* Clinic */
+.where { display: flex; align-items: center; justify-content: center; gap: 10px; margin: 0; text-align: center; }
+.where svg { width: 22px; height: 22px; flex: none; color: var(--gold); }
+
+/* Contact pill, mirrors the bottom bar of the flyer */
+.pill {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 6px 12px;
+  padding: 18px 18px;
+  border-radius: 22px;
+  background: var(--card);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  border: 2px solid var(--edge);
+  color: var(--ink);
+  text-decoration: none;
+  font-weight: 800;
+  font-size: clamp(1.2rem, 5vw, 1.55rem);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45), 0 12px 28px -16px rgba(60, 40, 20, 0.55);
+  transition: background-color 0.15s ease;
+}
+.pill:hover { background: rgba(224, 200, 156, 0.92); }
+.pill svg { width: 28px; height: 28px; flex: none; }
+.pill bdi { direction: ltr; unicode-bidi: isolate; letter-spacing: 0.02em; }
+
+/* Tablet: areas of help in three columns */
+@media (min-width: 560px) and (max-width: 899px) {
+  .services { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .services li { border-top: 0; border-inline-start: 1px solid var(--rule); padding: 4px 16px; }
+  .services li:first-child { border-inline-start: 0; padding-inline-start: 0; }
+  .services li:last-child { padding-inline-end: 0; }
+}
+
+/* Desktop: two columns, two rows, everything on one screen */
+@media (min-width: 900px) {
+  body { padding-block: 26px 28px; }
+  .grid {
+    grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+    grid-template-areas:
+      "hero services"
+      "pill clinic";
+    gap: 18px;
+  }
+  .hero { grid-area: hero; padding: 30px 34px; }
+  .services-card { grid-area: services; padding: 26px 30px; }
+  .pill { grid-area: pill; }
+  .clinic { grid-area: clinic; display: flex; flex-direction: column; justify-content: center; }
+  .actions { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
+  .btn { font-size: 0.98rem; padding-inline: 8px; }
+  .lead { max-width: 34em; }
+}
+@media (max-width: 380px) {
+  .card { padding: 20px 16px; }
+  .btn { font-size: 0.97rem; gap: 6px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .btn, .pill { transition: none; }
+}
+</style>
+
+<style>html{color-scheme:light}body{margin:0}img{max-width:100%}</style>
+</head>
+<body>
+
+<div class="wrap" lang="he" dir="rtl">
+
+  <header class="brand">
+    <div class="brand-row">
+      <svg class="brand-tree" viewBox="0 0 80 80" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.4"><path d="M40 54C38 46 30 41 21 34"/><path d="M40 54C39 44 33 34 29 21"/><path d="M40 54V8"/><path d="M40 54C41 44 47 34 51 21"/><path d="M40 54C42 46 50 41 59 34"/><path d="M40 48C35 44 31 44 26 46"/><path d="M40 48C45 44 49 44 54 46"/><path d="M40 67C34 69 29 72 25 77"/><path d="M40 67C46 69 51 72 55 77"/><path d="M40 67C38 71 37 74 36 78"/><path d="M40 67C42 71 43 74 44 78"/></g><path d="M36.4 68C38.6 61 39 56 38.4 50H41.6C41 56 41.4 61 43.6 68Z" fill="currentColor"/><g fill="currentColor"><ellipse cx="37.4" cy="33.0" rx="2.6" ry="1.5" transform="rotate(119 37.4 33.0)" fill-opacity="0.68"/><ellipse cx="59.2" cy="14.5" rx="2.6" ry="1.5" transform="rotate(131 59.2 14.5)" fill-opacity="0.69"/><ellipse cx="46.2" cy="14.3" rx="2.6" ry="1.5" transform="rotate(114 46.2 14.3)" fill-opacity="0.6"/><ellipse cx="50.4" cy="7.1" rx="2.6" ry="1.5" transform="rotate(101 50.4 7.1)" fill-opacity="0.93"/><ellipse cx="48.3" cy="35.8" rx="2.6" ry="1.5" transform="rotate(40 48.3 35.8)" fill-opacity="0.76"/><ellipse cx="45.4" cy="43.9" rx="2.6" ry="1.5" transform="rotate(83 45.4 43.9)" fill-opacity="0.67"/><ellipse cx="58.5" cy="31.0" rx="2.6" ry="1.5" transform="rotate(163 58.5 31.0)" fill-opacity="0.6"/><ellipse cx="48.4" cy="25.3" rx="2.6" ry="1.5" transform="rotate(141 48.4 25.3)" fill-opacity="0.95"/><ellipse cx="58.4" cy="40.4" rx="2.6" ry="1.5" transform="rotate(80 58.4 40.4)" fill-opacity="0.83"/><ellipse cx="40.7" cy="6.5" rx="2.6" ry="1.5" transform="rotate(144 40.7 6.5)" fill-opacity="0.83"/><ellipse cx="34.6" cy="47.3" rx="2.6" ry="1.5" transform="rotate(98 34.6 47.3)" fill-opacity="0.48"/><ellipse cx="15.8" cy="23.8" rx="2.6" ry="1.5" transform="rotate(101 15.8 23.8)" fill-opacity="0.66"/><ellipse cx="43.6" cy="14.9" rx="2.6" ry="1.5" transform="rotate(172 43.6 14.9)" fill-opacity="0.58"/><ellipse cx="17.7" cy="21.6" rx="2.6" ry="1.5" transform="rotate(104 17.7 21.6)" fill-opacity="0.83"/><ellipse cx="19.4" cy="17.3" rx="2.6" ry="1.5" transform="rotate(25 19.4 17.3)" fill-opacity="0.46"/><ellipse cx="38.1" cy="29.3" rx="2.6" ry="1.5" transform="rotate(174 38.1 29.3)" fill-opacity="0.73"/><ellipse cx="37.2" cy="14.5" rx="2.6" ry="1.5" transform="rotate(33 37.2 14.5)" fill-opacity="0.66"/><ellipse cx="33.7" cy="24.7" rx="2.6" ry="1.5" transform="rotate(54 33.7 24.7)" fill-opacity="0.45"/><ellipse cx="44.2" cy="7.1" rx="2.6" ry="1.5" transform="rotate(37 44.2 7.1)" fill-opacity="0.56"/><ellipse cx="26.9" cy="43.6" rx="2.6" ry="1.5" transform="rotate(84 26.9 43.6)" fill-opacity="0.87"/><ellipse cx="33.9" cy="8.7" rx="2.6" ry="1.5" transform="rotate(53 33.9 8.7)" fill-opacity="0.74"/><ellipse cx="26.1" cy="35.1" rx="2.6" ry="1.5" transform="rotate(95 26.1 35.1)" fill-opacity="0.76"/><ellipse cx="19.9" cy="34.4" rx="2.6" ry="1.5" transform="rotate(147 19.9 34.4)" fill-opacity="0.52"/><ellipse cx="33.8" cy="36.4" rx="2.6" ry="1.5" transform="rotate(79 33.8 36.4)" fill-opacity="0.9"/><ellipse cx="57.2" cy="17.5" rx="2.6" ry="1.5" transform="rotate(48 57.2 17.5)" fill-opacity="0.53"/><ellipse cx="47.0" cy="32.7" rx="2.6" ry="1.5" transform="rotate(175 47.0 32.7)" fill-opacity="0.93"/><ellipse cx="60.6" cy="35.2" rx="2.6" ry="1.5" transform="rotate(107 60.6 35.2)" fill-opacity="0.47"/><ellipse cx="18.9" cy="30.6" rx="2.6" ry="1.5" transform="rotate(65 18.9 30.6)" fill-opacity="0.57"/><ellipse cx="51.0" cy="17.8" rx="2.6" ry="1.5" transform="rotate(152 51.0 17.8)" fill-opacity="0.7"/><ellipse cx="41.1" cy="51.5" rx="2.6" ry="1.5" transform="rotate(17 41.1 51.5)" fill-opacity="0.51"/><ellipse cx="38.9" cy="37.7" rx="2.6" ry="1.5" transform="rotate(157 38.9 37.7)" fill-opacity="0.76"/><ellipse cx="28.1" cy="50.9" rx="2.6" ry="1.5" transform="rotate(52 28.1 50.9)" fill-opacity="0.82"/><ellipse cx="16.7" cy="25.6" rx="2.6" ry="1.5" transform="rotate(63 16.7 25.6)" fill-opacity="0.48"/><ellipse cx="22.5" cy="23.4" rx="2.6" ry="1.5" transform="rotate(146 22.5 23.4)" fill-opacity="0.94"/><ellipse cx="37.3" cy="21.5" rx="2.6" ry="1.5" transform="rotate(176 37.3 21.5)" fill-opacity="0.71"/><ellipse cx="64.1" cy="34.5" rx="2.6" ry="1.5" transform="rotate(4 64.1 34.5)" fill-opacity="0.69"/><ellipse cx="32.3" cy="20.6" rx="2.6" ry="1.5" transform="rotate(8 32.3 20.6)" fill-opacity="0.46"/><ellipse cx="47.4" cy="29.1" rx="2.6" ry="1.5" transform="rotate(79 47.4 29.1)" fill-opacity="0.61"/><ellipse cx="42.5" cy="41.9" rx="2.6" ry="1.5" transform="rotate(33 42.5 41.9)" fill-opacity="0.85"/><ellipse cx="62.4" cy="22.6" rx="2.6" ry="1.5" transform="rotate(175 62.4 22.6)" fill-opacity="0.69"/><ellipse cx="40.0" cy="5.7" rx="2.6" ry="1.5" transform="rotate(169 40.0 5.7)" fill-opacity="0.64"/><ellipse cx="44.5" cy="35.4" rx="2.6" ry="1.5" transform="rotate(20 44.5 35.4)" fill-opacity="0.5"/><ellipse cx="19.2" cy="17.9" rx="2.6" ry="1.5" transform="rotate(106 19.2 17.9)" fill-opacity="0.81"/><ellipse cx="34.0" cy="41.8" rx="2.6" ry="1.5" transform="rotate(148 34.0 41.8)" fill-opacity="0.68"/><ellipse cx="38.0" cy="32.1" rx="2.6" ry="1.5" transform="rotate(132 38.0 32.1)" fill-opacity="0.83"/><ellipse cx="14.6" cy="35.1" rx="2.6" ry="1.5" transform="rotate(123 14.6 35.1)" fill-opacity="0.46"/><ellipse cx="55.1" cy="38.0" rx="2.6" ry="1.5" transform="rotate(124 55.1 38.0)" fill-opacity="0.58"/><ellipse cx="49.6" cy="15.1" rx="2.6" ry="1.5" transform="rotate(43 49.6 15.1)" fill-opacity="0.83"/><ellipse cx="31.5" cy="51.5" rx="2.6" ry="1.5" transform="rotate(127 31.5 51.5)" fill-opacity="0.9"/><ellipse cx="30.7" cy="38.3" rx="2.6" ry="1.5" transform="rotate(50 30.7 38.3)" fill-opacity="0.77"/><ellipse cx="56.4" cy="42.7" rx="2.6" ry="1.5" transform="rotate(51 56.4 42.7)" fill-opacity="0.89"/><ellipse cx="33.8" cy="34.2" rx="2.6" ry="1.5" transform="rotate(81 33.8 34.2)" fill-opacity="0.55"/><ellipse cx="20.3" cy="22.5" rx="2.6" ry="1.5" transform="rotate(10 20.3 22.5)" fill-opacity="0.81"/><ellipse cx="22.1" cy="27.5" rx="2.6" ry="1.5" transform="rotate(70 22.1 27.5)" fill-opacity="0.91"/><ellipse cx="57.9" cy="24.1" rx="2.6" ry="1.5" transform="rotate(133 57.9 24.1)" fill-opacity="0.7"/><ellipse cx="30.0" cy="47.0" rx="2.6" ry="1.5" transform="rotate(159 30.0 47.0)" fill-opacity="0.68"/><ellipse cx="51.3" cy="33.5" rx="2.6" ry="1.5" transform="rotate(79 51.3 33.5)" fill-opacity="0.77"/><ellipse cx="43.5" cy="37.0" rx="2.6" ry="1.5" transform="rotate(103 43.5 37.0)" fill-opacity="0.68"/><ellipse cx="25.8" cy="12.0" rx="2.6" ry="1.5" transform="rotate(12 25.8 12.0)" fill-opacity="0.94"/><ellipse cx="41.9" cy="37.0" rx="2.6" ry="1.5" transform="rotate(94 41.9 37.0)" fill-opacity="0.93"/><ellipse cx="50.0" cy="15.0" rx="2.6" ry="1.5" transform="rotate(121 50.0 15.0)" fill-opacity="0.58"/><ellipse cx="51.6" cy="42.8" rx="2.6" ry="1.5" transform="rotate(136 51.6 42.8)" fill-opacity="0.81"/><ellipse cx="22.7" cy="18.6" rx="2.6" ry="1.5" transform="rotate(88 22.7 18.6)" fill-opacity="0.72"/><ellipse cx="64.1" cy="30.0" rx="2.6" ry="1.5" transform="rotate(40 64.1 30.0)" fill-opacity="0.65"/><ellipse cx="52.0" cy="11.5" rx="2.6" ry="1.5" transform="rotate(116 52.0 11.5)" fill-opacity="0.55"/><ellipse cx="42.7" cy="37.6" rx="2.6" ry="1.5" transform="rotate(128 42.7 37.6)" fill-opacity="0.85"/><ellipse cx="64.0" cy="28.2" rx="2.6" ry="1.5" transform="rotate(166 64.0 28.2)" fill-opacity="0.94"/><ellipse cx="19.7" cy="17.1" rx="2.6" ry="1.5" transform="rotate(99 19.7 17.1)" fill-opacity="0.94"/><ellipse cx="65.8" cy="31.8" rx="2.6" ry="1.5" transform="rotate(82 65.8 31.8)" fill-opacity="0.58"/><ellipse cx="40.3" cy="6.9" rx="2.6" ry="1.5" transform="rotate(87 40.3 6.9)" fill-opacity="0.73"/><ellipse cx="54.5" cy="29.4" rx="2.6" ry="1.5" transform="rotate(7 54.5 29.4)" fill-opacity="0.56"/><ellipse cx="59.8" cy="26.4" rx="2.6" ry="1.5" transform="rotate(8 59.8 26.4)" fill-opacity="0.54"/><ellipse cx="31.1" cy="44.4" rx="2.6" ry="1.5" transform="rotate(35 31.1 44.4)" fill-opacity="0.69"/><ellipse cx="41.0" cy="38.9" rx="2.6" ry="1.5" transform="rotate(112 41.0 38.9)" fill-opacity="0.92"/><ellipse cx="39.6" cy="52.5" rx="2.6" ry="1.5" transform="rotate(22 39.6 52.5)" fill-opacity="0.83"/><ellipse cx="36.7" cy="32.9" rx="2.6" ry="1.5" transform="rotate(143 36.7 32.9)" fill-opacity="0.77"/><ellipse cx="41.2" cy="47.2" rx="2.6" ry="1.5" transform="rotate(143 41.2 47.2)" fill-opacity="0.58"/><ellipse cx="49.3" cy="52.7" rx="2.6" ry="1.5" transform="rotate(156 49.3 52.7)" fill-opacity="0.55"/><ellipse cx="41.3" cy="33.6" rx="2.6" ry="1.5" transform="rotate(51 41.3 33.6)" fill-opacity="0.66"/><ellipse cx="33.4" cy="31.9" rx="2.6" ry="1.5" transform="rotate(11 33.4 31.9)" fill-opacity="0.71"/><ellipse cx="34.6" cy="45.1" rx="2.6" ry="1.5" transform="rotate(144 34.6 45.1)" fill-opacity="0.51"/><ellipse cx="63.3" cy="27.9" rx="2.6" ry="1.5" transform="rotate(103 63.3 27.9)" fill-opacity="0.58"/><ellipse cx="38.6" cy="11.3" rx="2.6" ry="1.5" transform="rotate(111 38.6 11.3)" fill-opacity="0.9"/><ellipse cx="41.3" cy="10.4" rx="2.6" ry="1.5" transform="rotate(107 41.3 10.4)" fill-opacity="0.76"/><ellipse cx="23.5" cy="16.4" rx="2.6" ry="1.5" transform="rotate(175 23.5 16.4)" fill-opacity="0.59"/><ellipse cx="52.1" cy="17.2" rx="2.6" ry="1.5" transform="rotate(127 52.1 17.2)" fill-opacity="0.5"/><ellipse cx="52.5" cy="11.1" rx="2.6" ry="1.5" transform="rotate(130 52.5 11.1)" fill-opacity="0.76"/><ellipse cx="51.8" cy="40.1" rx="2.6" ry="1.5" transform="rotate(111 51.8 40.1)" fill-opacity="0.46"/><ellipse cx="47.2" cy="46.3" rx="2.6" ry="1.5" transform="rotate(157 47.2 46.3)" fill-opacity="0.53"/><ellipse cx="24.0" cy="36.6" rx="2.6" ry="1.5" transform="rotate(163 24.0 36.6)" fill-opacity="0.56"/><ellipse cx="24.7" cy="32.1" rx="2.6" ry="1.5" transform="rotate(150 24.7 32.1)" fill-opacity="0.88"/><ellipse cx="25.6" cy="42.0" rx="2.6" ry="1.5" transform="rotate(88 25.6 42.0)" fill-opacity="0.9"/><ellipse cx="30.1" cy="20.7" rx="2.6" ry="1.5" transform="rotate(49 30.1 20.7)" fill-opacity="0.56"/><ellipse cx="20.2" cy="17.0" rx="2.6" ry="1.5" transform="rotate(22 20.2 17.0)" fill-opacity="0.58"/><ellipse cx="35.8" cy="44.5" rx="2.6" ry="1.5" transform="rotate(32 35.8 44.5)" fill-opacity="0.55"/><ellipse cx="46.9" cy="44.9" rx="2.6" ry="1.5" transform="rotate(24 46.9 44.9)" fill-opacity="0.55"/><ellipse cx="49.8" cy="50.6" rx="2.6" ry="1.5" transform="rotate(92 49.8 50.6)" fill-opacity="0.51"/><ellipse cx="40.3" cy="42.9" rx="2.6" ry="1.5" transform="rotate(128 40.3 42.9)" fill-opacity="0.95"/><ellipse cx="58.0" cy="45.1" rx="2.6" ry="1.5" transform="rotate(123 58.0 45.1)" fill-opacity="0.5"/><ellipse cx="15.0" cy="32.6" rx="2.6" ry="1.5" transform="rotate(131 15.0 32.6)" fill-opacity="0.9"/><ellipse cx="39.0" cy="14.5" rx="2.6" ry="1.5" transform="rotate(29 39.0 14.5)" fill-opacity="0.55"/><ellipse cx="38.0" cy="43.2" rx="2.6" ry="1.5" transform="rotate(83 38.0 43.2)" fill-opacity="0.65"/><ellipse cx="36.0" cy="22.7" rx="2.6" ry="1.5" transform="rotate(53 36.0 22.7)" fill-opacity="0.75"/><ellipse cx="58.6" cy="14.1" rx="2.6" ry="1.5" transform="rotate(116 58.6 14.1)" fill-opacity="0.63"/><ellipse cx="33.0" cy="51.1" rx="2.6" ry="1.5" transform="rotate(154 33.0 51.1)" fill-opacity="0.53"/><ellipse cx="40.7" cy="5.8" rx="2.6" ry="1.5" transform="rotate(21 40.7 5.8)" fill-opacity="0.85"/><ellipse cx="51.1" cy="48.0" rx="2.6" ry="1.5" transform="rotate(161 51.1 48.0)" fill-opacity="0.92"/><ellipse cx="43.8" cy="14.5" rx="2.6" ry="1.5" transform="rotate(149 43.8 14.5)" fill-opacity="0.94"/><ellipse cx="56.5" cy="17.9" rx="2.6" ry="1.5" transform="rotate(29 56.5 17.9)" fill-opacity="0.82"/><ellipse cx="55.0" cy="45.7" rx="2.6" ry="1.5" transform="rotate(103 55.0 45.7)" fill-opacity="0.52"/><ellipse cx="30.8" cy="31.9" rx="2.6" ry="1.5" transform="rotate(94 30.8 31.9)" fill-opacity="0.83"/><ellipse cx="54.3" cy="25.3" rx="2.6" ry="1.5" transform="rotate(47 54.3 25.3)" fill-opacity="0.49"/><ellipse cx="31.5" cy="28.4" rx="2.6" ry="1.5" transform="rotate(2 31.5 28.4)" fill-opacity="0.89"/><ellipse cx="24.7" cy="25.3" rx="2.6" ry="1.5" transform="rotate(46 24.7 25.3)" fill-opacity="0.72"/><ellipse cx="47.7" cy="40.1" rx="2.6" ry="1.5" transform="rotate(101 47.7 40.1)" fill-opacity="0.94"/><ellipse cx="14.2" cy="35.8" rx="2.6" ry="1.5" transform="rotate(60 14.2 35.8)" fill-opacity="0.58"/><ellipse cx="34.7" cy="7.5" rx="2.6" ry="1.5" transform="rotate(50 34.7 7.5)" fill-opacity="0.77"/><ellipse cx="27.9" cy="22.0" rx="2.6" ry="1.5" transform="rotate(138 27.9 22.0)" fill-opacity="0.7"/><ellipse cx="65.2" cy="33.4" rx="2.6" ry="1.5" transform="rotate(25 65.2 33.4)" fill-opacity="0.77"/><ellipse cx="45.3" cy="43.0" rx="2.6" ry="1.5" transform="rotate(11 45.3 43.0)" fill-opacity="0.64"/></g></svg>
+      <div class="logo-word" aria-label="Eitanlp">Eita<span>nlp</span></div>
+    </div>
+    <p class="brand-sub">איתן · מאמן ומטפל בשיטת NLP</p>
+  </header>
+
+  <main class="grid">
+
+    <section class="card hero" aria-labelledby="hero-title">
+      <h1 id="hero-title">לשנות דפוסים, להחזיר שקט ולבנות מחדש</h1>
+      <p class="lead">טיפול ואימון בשיטת NLP לשינוי דפוסי התנהגות, להתמודדות עם חרדות ולשיפור מערכות יחסים. תהליך אישי שבו מזהים את מה שמעכב אותך, מחזקים את מה שעובד, ויוצרים יחד מרחב של שקט נפשי וצמיחה.</p>
+
+      <nav class="actions" aria-label="יצירת קשר">
+        <a class="btn btn-solid" href="tel:0522976686">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+          התקשרו
+        </a>
+        <!-- Number in international format without + or zeros: 972522976686 -->
+        <a class="btn btn-solid" href="https://wa.me/972522976686?text=%D7%A9%D7%9C%D7%95%D7%9D%20%D7%90%D7%99%D7%AA%D7%9F%2C%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%AA%D7%90%D7%9D%20%D7%A4%D7%92%D7%99%D7%A9%D7%94" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21l1.65-4.9A9 9 0 1 1 8 19.4L3 21z"/><path d="M9 8.5c0 3.5 3 6.5 6.5 6.5l1-1.6-2-1-.9.9c-.9-.4-1.9-1.4-2.3-2.3l.9-.9-1-2L9 8.5z" fill="currentColor" stroke="none"/></svg>
+          וואטסאפ
+        </a>
+        <a class="btn btn-line" href="https://www.instagram.com/eitanzc?obrf=MW8zMTMzNTRuNXo1NQ==" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+          אינסטגרם
+        </a>
+        <a class="btn btn-line" href="https://www.facebook.com/share/1AAyTSdYeL/" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.5 21v-8h2.7l.5-3.2h-3.2V7.9c0-.9.4-1.7 1.8-1.7h1.5V3.4c-.3 0-1.3-.2-2.4-.2-2.5 0-4.1 1.5-4.1 4.2v2.4H7.5V13h2.8v8h3.2z"/></svg>
+          פייסבוק
+        </a>
+      </nav>
+    </section>
+
+    <section class="card services-card" aria-labelledby="help-title">
+      <h2 class="label" id="help-title">במה אני עוזר</h2>
+      <ul class="services">
+        <li>
+          <h3>שינוי דפוסי התנהגות</h3>
+          <p>זיהוי הרגלים ותגובות אוטומטיות שחוזרים על עצמם, ובניית דרך חדשה להגיב.</p>
+        </li>
+        <li>
+          <h3>חרדות</h3>
+          <p>כלים מעשיים להתמודדות עם חרדה ולחזרה לתחושת שקט ויציבות.</p>
+        </li>
+        <li>
+          <h3>מערכות יחסים</h3>
+          <p>הבנת הדינמיקה בזוגיות, במשפחה ובעבודה, ושינוי של דפוסים שפוגעים בקשר.</p>
+        </li>
+      </ul>
+    </section>
+
+    <section class="card clinic" aria-labelledby="where-title">
+      <h2 class="label" id="where-title">הקליניקה</h2>
+      <p class="where">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>
+        <span>הקליניקה נמצאת בראש העין. לתיאום פגישה אפשר להתקשר או לשלוח הודעה בוואטסאפ.</span>
+      </p>
+    </section>
+
+    <a class="pill" href="tel:0522976686" aria-label="תיאום פגישות עם איתן, 052-2976686">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+      <span>תיאום פגישות: איתן</span>
+      <bdi>052-2976686</bdi>
+    </a>
+
+  </main>
+</div>
+
+</body>
+</html>
